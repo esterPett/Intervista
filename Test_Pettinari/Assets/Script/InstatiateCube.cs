@@ -8,8 +8,9 @@ public class InstatiateCube : MonoBehaviour
     [SerializeField] private int nCube = 10; //Numero di cubo da instanziare
     [SerializeField] private float distance= 5f; //Distanza dei cubi dal cilindro
     [SerializeField] private GameObject cube; //Collegamento al GameObject cube
+    [SerializeField] private LayerMask parete;
 
-    
+    [SerializeField] private List<GameObject> cubi;
     void Start()
     {
         float distanceCube = 360f / nCube; //Distanza tra ogni cubo
@@ -23,10 +24,25 @@ public class InstatiateCube : MonoBehaviour
 
             Vector3 position = new Vector3(transform.position.x + x, transform.position.y, transform.position.z + z);
 
-            Instantiate(cube, position, Quaternion.identity, transform);
+            
+          
+            GameObject obj = Instantiate(cube, position, Quaternion.identity, transform);
+            cubi.Add(obj);
 
+            obj.GetComponent<CubeDistance>().originPosition = transform;
+            obj.GetComponent<CubeDistance>().distance = distance;
         }
+
     }
 
-    
+    private void OnDrawGizmos()
+    {
+        Debug.DrawLine(transform.position, transform.position-transform.right *distance);
+
+        
+    }
+
+
+
+
 }
