@@ -20,12 +20,12 @@ public class CubeDistance : MonoBehaviour
         Vector3 direction = (transform.position- originPosition.position).normalized;
         RaycastHit hit = new RaycastHit();
 
-         if (Physics.Raycast(transform.position,-direction, out hit, distance , parete))
+         if (Physics.Raycast(transform.position,-direction, out hit, distance, parete))
 
           {
             cube.transform.position = hit.point - (hit.normal * meshConstant);
-          
-          }
+
+        }
           else
 
           {
