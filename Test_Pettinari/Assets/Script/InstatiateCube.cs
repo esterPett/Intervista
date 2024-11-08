@@ -42,6 +42,7 @@ public class InstatiateCube : MonoBehaviour
 
             obj.GetComponent<CubeDistance>().originPosition = transform;
             obj.GetComponent<CubeDistance>().distance = distance;
+            obj.GetComponent<RotateCube>().player = transform;
         }
 
     }
