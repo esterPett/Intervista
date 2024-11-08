@@ -875,6 +875,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   cubi: []
+  pari: {fileID: 2100000, guid: d57a6269f6f2cfc4589b134e83988ad6, type: 2}
+  dispari: {fileID: 2100000, guid: 4e376bfe91adede4897ec0c21d5c2291, type: 2}
 --- !u!54 &409428178
 Rigidbody:
   m_ObjectHideFlags: 0
