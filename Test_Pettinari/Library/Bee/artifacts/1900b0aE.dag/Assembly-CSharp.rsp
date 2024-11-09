@@ -358,7 +358,6 @@
 "Assets/Script/CameraFollow.cs"
 "Assets/Script/CubeDistance.cs"
 "Assets/Script/InstatiateCube.cs"
-"Assets/Script/MovementPlayer.cs"
 "Assets/Script/RotateCube.cs"
 -langversion:9.0
 
