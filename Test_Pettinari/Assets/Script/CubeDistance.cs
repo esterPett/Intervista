@@ -12,28 +12,43 @@ public class CubeDistance : MonoBehaviour
     public Transform originPosition;
     public float distance; //Distanza massima del Raycast
     public LayerMask parete;
-    
-    void Update()
+
+  
+    void FixedUpdate()
     {
         cube.transform.LookAt(originPosition); //Ruoto il cubo in modo che guardi sempre verso l'originPosition
        
         //Calcola la direzione normalizzata dal cubo verso l'origine
         Vector3 direction = (transform.position - originPosition.position).normalized;
-        RaycastHit hit = new RaycastHit();
-     
-         if (Physics.Raycast(transform.position + direction * 4 ,-direction, out hit, distance, parete))
+         RaycastHit hit = new RaycastHit();
 
-          {
-            Vector3 nuovaPosizione = hit.point - (hit.normal * meshConstant);
-            cube.transform.position = Vector3.Lerp(cube.transform.position, nuovaPosizione, 0.5f);
-          }
-          else
+        if (Physics.Raycast(transform.position + direction  ,originPosition.position, out hit, distance, parete))
 
-          {
-            cube.transform.position = Vector3.Lerp(cube.transform.position, transform.position, 0.5f);
+        {   
+            Vector3 nuovaPosizione = hit.point - (hit.normal * meshConstant); 
+            Collider[] colliders = Physics.OverlapBox(nuovaPosizione,cube.transform.localScale / 2, cube.transform.rotation, parete);
+            Debug.DrawLine(originPosition.position, nuovaPosizione, Color.red);
+            if (colliders.Length == 0)
+            {
+                // Aggiorna la posizione del cubo con un avvicinamento graduale
+                cube.transform.position = Vector3.Lerp(transform.position, nuovaPosizione, 0.5f);
+            }
+            else
+            {
+                cube.transform.position = hit.normal * meshConstant + transform.position;
+            }
+
+
         }
+        else
 
-          Debug.DrawLine(originPosition.position, transform.position);
+           {
+             cube.transform.position = Vector3.Lerp(cube.transform.position, transform.position, 0.5f);
+           }
+
+        
+        Debug.DrawLine(transform.position + direction , originPosition.position);
+
 
         
     }
