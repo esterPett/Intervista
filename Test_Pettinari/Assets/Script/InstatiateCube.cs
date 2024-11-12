@@ -40,22 +40,12 @@ public class InstatiateCube : MonoBehaviour
             }
             cubi.Add(obj);
 
+            //Mi prendo i componenti che poi utilizzero in CubeDistances
             obj.GetComponent<CubeDistance>().originPosition = transform;
             obj.GetComponent<CubeDistance>().distance = distance;
             obj.GetComponent<RotateCube>().player = transform;
         }
 
     }
-
-  
-    private void OnDrawGizmos()
-    {
-        Debug.DrawLine(transform.position, transform.position-transform.right *distance);
-
-        
-    }
-
-
-
 
 }

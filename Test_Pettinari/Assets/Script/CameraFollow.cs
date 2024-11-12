@@ -11,8 +11,8 @@ public class CameraFollow : MonoBehaviour
         this.offest = this.transform.position - this.player.transform.position;
     }
 
-    // Update is called once per frame
-    void LateUpdate()
+   
+    void Update()
     {
         this.transform.position = this.player.transform.position + this.offest;
     }
